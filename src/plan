@@ -1,0 +1,32 @@
+The plan for displaying the categories on the ludo cross...
+
+#1
+Sum up categories and make a list with which category it interacts... 
+#2
+make beforehand and hand to function (first one will be hardcoded)
+let categorydata = [{"categories": [{"cat1": count(int),
+                                    "cat2": count(int)}
+                                    ],
+                    "mechanics": [{"mech1": count(int),
+                                "mech2": count(int)}
+                                ]
+                    "number_of_games": int,
+                    "list_of_games": [...]}
+]
+#3
+display category on canvas and have outer circle fixed, inner circle represents games in category
+
+#4
+devise some function to get categories into ludo form, first hardcode and then look for dynamic code later
+
+#5
+apply similar handle to mechanics
+
+#6 
+get some interaction when hovering over one cat/mech and indicate count to other mechs/cats with thickness of arrow
+
+thoughts for optimisation
+Use onMount/onDestroy function in svelte (especially for datawrangling)
+For later: Display table below gameboard interacting with the board and have a filtermechanic
+
+overall: functionality first, looks later
