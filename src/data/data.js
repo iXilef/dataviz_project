@@ -1,16 +1,3 @@
-export const categories_old = [
-    {"category1": 6, "category2": 4, "category3": 1, "category4": 0, "games": []},
-    {"category2": 5, "category1": 2, "category4": 4, "games": []},
-    {"category3": 2, "category1": 1, "games": []}
-]
-
-export const categories_try = [
-    {"cat1": [
-        {"count": 7, "cat2": 4, "cat3": 6, "cat4": 3, "cat5": 0, "games": []},
-    
-    ]}
-]
-
 export const categories = [
     {"maincat": "cat1", "maincat_count": 15, "2ndcat": "cat2", "2ndcat_count": 4,
     "3rdcat": "cat3", "3rdcat_count": 6, "4thcat": "cat4", "4thcat_count": 3, "games": [],

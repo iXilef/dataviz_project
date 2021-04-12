@@ -1,5 +1,5 @@
 <script>
-	import { categories, categories_try, myCircles } from "./data/data.js";
+	import { categories, myCircles } from "./data/data.js";
 	// import radius_rescale from "./scaling_functions.svelte";
 	console.log(categories[0].neighbours[0].cat, myCircles[0]);
 
