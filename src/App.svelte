@@ -4,6 +4,7 @@
     import {scaleLinear} from 'd3-scale';
 	import { missing_component } from 'svelte/internal';
 	import { categories} from "./data/categories.js";
+	import Pion from "./Pion.svelte";
 
     let cross_size = 1000;
     let nr_points = 4;
@@ -13,6 +14,14 @@
 		{x: 3, y: 1},{x: 3, y: 2},{x: 2, y: 2},{x: 2, y: 3},{x: 1, y: 3},{x: 1, y: 2},
 		{x: 0, y: 2},{x: 0, y: 1}];
 	let checkthis;
+	let selected_datapoint = defined;
+	let mouse_x, mouse_y;
+	const setMousePosition = function(event) {
+	mouse_x = event.clientX;
+	mouse_y = event.clientY;
+	}
+
+
 
 	let rescale_points = scaleLinear().domain([0,3]).range([0,cross_size]);
 
@@ -142,10 +151,15 @@
 		stroke: blue;
 		stroke-width: 5px;
 	}
+	.column {
+		float:left;
+		width: 50%;
+	}
 </style>
 
 
-
+<div class="row">
+<div class="column">
 <svg width=1000 height=1000>
 	<LudoCross cross_size = 1000></LudoCross>
 
@@ -165,8 +179,32 @@
 		{/if}	
 	{/each}
 	{#each categories.slice(0, slice) as category, i}
-		<circle class = "outercircle" on:click={()  => onClickHandler(category.maincat)} cx={data[i].x} cy={data[i].y} r={point_radius}/>
-		<text class = "circle_text" on:click={()  => onClickHandler(category.maincat)} x={data[i].x} y={data[i].y} text-anchor="middle" alignment-baseline="middle">{category.maincat}</text>
+		<circle class = "outercircle" on:mouseout = {() => {selected_datapoint = undefined}} 
+		on:click={()  => onClickHandler(category.maincat)} x={data[i].x} y={data[i].y} 
+		on:click={()  => onClickHandler(category.maincat)} cx={data[i].x} cy={data[i].y} r={point_radius}/>
+		<text class = "circle_text" on:mouseover={(event) => {selected_datapoint = point; setMousePosition(event)}} 
+		on:mouseout = {() => {selected_datapoint = undefined}} 
+		on:click={()  => onClickHandler(category.maincat)} x={data[i].x} y={data[i].y} 
+		text-anchor="middle" alignment-baseline="middle">{category.maincat}</text>
 	{/each}
 </svg>
+</div>
+{#if selected_datapoint != undefined}
+<div id="tooltip" style="left: {mouse_x + 10}px; top: {mouse_y - 10}px">
+		Category: ...
+</div>
+<div class = "column" id="details">
+	<svg id ="svg" viewbox="0 0 300 300" width=px300px height=px>
+		<Pion x=150/>
+	</svg>
+	<div>
+		Top 5 Games for category...:
+		<ul>
+			<li>Some game name</li>
+			<li>...</li>
+		</ul>
+	</div>
+</div>
 
+{/if}
+</div>
