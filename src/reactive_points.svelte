@@ -52,7 +52,15 @@ let lines = [];
 
 	<circle cx={myCircles[i][i].x} cy={myCircles[i][i].y} r={radius_max} class = "outercircle" id = {category.maincat} on:click={line_show2}/>
 	<circle cx={myCircles[i][i].x} cy={myCircles[i][i].y} r={radius_rescale(category.maincat_count, radius_max, category)} class = "innercircle"/>
+	<!-- <text x={myCircles[i][i].x} y={myCircles[i][i].y}>{category.maincat}</text> -->
+	<!-- {#if category.maincat_1.length == 0}
 	<text x={myCircles[i][i].x} y={myCircles[i][i].y}>{category.maincat}</text>
+	{:else}
+	<text x={myCircles[i][i].x} y={myCircles[i][i].y}>{category.maincat_1}</text>
+	<text x={myCircles[i][i].x} y={myCircles[i][i].y}>{category.maincat_2}</text> -->
+	{/if}
+
+	
 	{#each category.neighbours as neighbour, j}
 		<line class="lines" href={category.maincat} bind:this={lines[j]} x1={myCircles[i][i].x} y1={myCircles[i][i].y} x2={get_line_coord(neighbour.cat, "x")} y2={get_line_coord(neighbour.cat, "y")} style="stroke-width: {neighbour.count};"/>
 	{/each}
